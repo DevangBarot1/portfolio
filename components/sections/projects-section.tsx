@@ -23,7 +23,7 @@ const projects = [
     image: "/images/portfolio.png",
     tags: ["React", "Three.js", "Framer Motion", "Tailwind CSS"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/DevangBarot1/portfolio",
   },
   {
     title: "Noteng",
