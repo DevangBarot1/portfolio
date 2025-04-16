@@ -34,6 +34,15 @@ const projects = [
     demoUrl: "https://noteng.vercel.app/",
     githubUrl: "#",
   },
+  {
+    title: "AI Coach",
+    description:
+      "A personal AI-powered coaching assistant that provides smart suggestions, habit tracking, and personalized goal-setting to enhance productivity and self-growth.",
+    image: "/images/ai-coach.png",
+    tags: ["Next.js", "OpenAI API", "Tailwind CSS", "MongoDB"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/DevangBarot1/Ai-coach",
+  },
 ]
 
 export default function ProjectsSection() {
@@ -58,7 +67,8 @@ export default function ProjectsSection() {
           </motion.div>
         </div>
 
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
           {projects.map((project, index) => (
             <motion.div
               key={index}

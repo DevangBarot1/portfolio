@@ -1,10 +1,9 @@
 "use client"
 
 import { useRef } from "react"
-import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { FileText } from "lucide-react"
+import { FileText, Sparkles } from "lucide-react"
 
 export default function AboutSection() {
   const ref = useRef(null)
@@ -42,79 +41,81 @@ export default function AboutSection() {
   ]
 
   return (
-    <section id="about" className="py-20 relative overflow-hidden">
+    <section id="about" className="py-24 bg-muted/50 relative overflow-hidden">
       <div className="section-padding">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 gap-12 items-center"
         >
-          {/* Image */}
-          <motion.div variants={itemVariants} className="relative">
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=500&width=500"
-                alt="Developer portrait"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-midnight-blue/80 to-transparent" />
-            </div>
-
-            {/* Experience badge */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : { scale: 0 }}
-              transition={{ delay: 0.6, duration: 0.5, type: "spring" }}
-              className="absolute -bottom-6 -right-6 md:bottom-10 md:right-10 glassmorphism rounded-full p-6 shadow-lg"
-            >
-              <div className="text-center">
-                <span className="block text-3xl font-bold text-primary">5+</span>
-                <span className="text-sm">Years Experience</span>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Content */}
-          <motion.div variants={itemVariants} className="space-y-6">
+          <motion.div variants={itemVariants} className="space-y-6 text-center">
+            {/* Title with Icon */}
             <div>
-              <h2 className="text-xl font-medium text-primary mb-2">About Me</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">Creative Developer & Designer</h3>
+              <h2 className="text-2xl font-medium text-primary mb-4 flex items-center justify-center gap-3">
+                <Sparkles className="w-8 h-8 text-yellow-400" />
+                About Me
+              </h2>
+              <h3 className="text-4xl md:text-5xl font-bold mb-6">Creative Developer & Designer</h3>
             </div>
 
-            <p className="text-foreground/80">
-              I'm a passionate developer with expertise in creating immersive digital experiences. With a background in
-              both design and development, I bridge the gap between aesthetics and functionality to build applications
-              that are not only visually stunning but also highly performant.
+            {/* Inspirational Quote */}
+            <blockquote className="italic text-foreground/70 max-w-xl mx-auto border-l-4 border-primary pl-6 text-lg">
+              “Design is not just what it looks like and feels like. Design is how it works.” – Steve Jobs
+            </blockquote>
+
+            {/* About Me Description */}
+            <p className="text-foreground/80 max-w-2xl mx-auto text-lg">
+              I'm a passionate developer with expertise in creating immersive digital experiences. With a background in both design and development, I bridge the gap between aesthetics and functionality to build applications that are not only visually stunning but also highly performant.
             </p>
 
-            <p className="text-foreground/80">
-              My approach combines technical precision with creative problem-solving, allowing me to tackle complex
-              challenges and deliver innovative solutions that exceed expectations.
+            <p className="text-foreground/80 max-w-2xl mx-auto text-lg">
+              My approach combines technical precision with creative problem-solving, allowing me to tackle complex challenges and deliver innovative solutions that exceed expectations.
             </p>
 
-            <div className="pt-4">
-              <h4 className="text-xl font-semibold mb-3">Skills & Expertise</h4>
-              <div className="flex flex-wrap gap-2">
+            {/* Personal Fun Fact */}
+            <p className="text-sm text-muted-foreground max-w-xl mx-auto mt-4">
+              When I’m not coding, I’m probably sketching UI ideas, exploring 3D design, or sipping chai and nerding out about new tech.
+            </p>
+
+            {/* Skills Section */}
+            <div className="pt-8">
+              <h4 className="text-2xl font-semibold mb-4 text-WHITE-800">Skills & Expertise</h4>
+              <motion.div
+                className="flex flex-wrap justify-center gap-4"
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={{
+                  visible: {
+                    transition: { staggerChildren: 0.05 },
+                  },
+                }}
+              >
                 {skills.map((skill, index) => (
-                  <span key={index} className="px-3 py-1 rounded-full text-sm bg-primary/10 border border-primary/20">
+                  <motion.span
+                    key={index}
+                    className="px-5 py-2 rounded-full text-lg bg-primary/10 border border-primary/20"
+                    variants={itemVariants}
+                  >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
-            <Button className="mt-4" variant="outline">
-              <FileText className="mr-2 h-4 w-4" />
-              Download Resume
-            </Button>
+            {/* View Resume Button */}
+            <div className="flex justify-center mt-8">
+              <Button asChild className="mt-6" variant="outline">
+                <a href="/resume_final.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg">
+                  <FileText className="mr-2 h-5 w-5" />
+                  View Resume
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </motion.div>
       </div>
     </section>
   )
 }
-
